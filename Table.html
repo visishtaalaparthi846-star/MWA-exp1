@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toy Table</title>
+    <style>
+      :root {
+        --bg: #fff7f0;
+        --panel: #ffffff;
+        --line: #f0d6c2;
+        --head: #ffedd5;
+        --ink: #2a1f1a;
+        --accent: #c2410c;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        background: linear-gradient(180deg, #fff8f1 0%, #fde7d8 100%);
+        color: var(--ink);
+      }
+
+      .page {
+        width: min(980px, calc(100% - 32px));
+        margin: 30px auto;
+        background: var(--panel);
+        border: 2px solid var(--line);
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 18px 40px rgba(122, 68, 24, 0.12);
+      }
+
+      .hero {
+        padding: 30px;
+        background: linear-gradient(135deg, #9a3412, #ea580c);
+        color: #fff7ed;
+      }
+
+      .hero h1 {
+        margin: 0 0 10px;
+        font-size: 2.2rem;
+      }
+
+      .hero p {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      .content {
+        padding: 26px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+      }
+
+      th,
+      td {
+        border: 1px solid var(--line);
+        padding: 14px;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        background: var(--head);
+        color: var(--accent);
+        font-size: 1.05rem;
+      }
+
+      td img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        display: block;
+      }
+
+      .cost {
+        font-weight: bold;
+        color: #9a3412;
+        white-space: nowrap;
+      }
+
+      .footer-note {
+        margin-top: 18px;
+        padding: 14px 16px;
+        background: #fff4e6;
+        border-left: 5px solid var(--accent);
+        border-radius: 10px;
+      }
+
+      @media (max-width: 700px) {
+        .hero,
+        .content {
+          padding: 18px;
+        }
+
+        td img {
+          width: 90px;
+          height: 90px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <h1>Toy Information Table</h1>
+        <p>
+          This table displays different toys along with their image,
+          description, and cost.
+        </p>
+      </header>
+
+      <main class="content">
+        <table>
+          <tr>
+            <th>Image of the Toy</th>
+            <th>Description of the Toy</th>
+            <th>Cost of the Toy</th>
+          </tr>
+          <tr>
+            <td>
+              <img
+                src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=300&q=80"
+                alt="Teddy bear toy"
+              />
+            </td>
+            <td>
+              <strong>Teddy Bear</strong><br />
+              A soft and fluffy teddy bear made for children to cuddle and play
+              with. It is light, colorful, and suitable for all age groups.
+            </td>
+            <td class="cost">Rs. 450</td>
+          </tr>
+          <tr>
+            <td>
+              <img
+                src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=300&q=80"
+                alt="Toy car"
+              />
+            </td>
+            <td>
+              <strong>Toy Car</strong><br />
+              A miniature racing car with smooth wheels and a bright design. It
+              is ideal for indoor play and helps children enjoy imaginative
+              racing games.
+            </td>
+            <td class="cost">Rs. 300</td>
+          </tr>
+          <tr>
+            <td>
+              <img
+                src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=300&q=80"
+                alt="Building blocks toy"
+              />
+            </td>
+            <td>
+              <strong>Building Blocks</strong><br />
+              A set of colorful plastic blocks that can be joined together to
+              make houses, towers, and creative structures. This toy improves
+              creativity and motor skills.
+            </td>
+            <td class="cost">Rs. 650</td>
+          </tr>
+          <tr>
+            <td>
+              <img
+                src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=300&q=80"
+                alt="Doll toy"
+              />
+            </td>
+            <td>
+              <strong>Doll</strong><br />
+              A decorative and attractive doll with colorful clothing. It is
+              commonly used for role-play and storytelling activities by
+              children.
+            </td>
+            <td class="cost">Rs. 550</td>
+          </tr>
+          <tr>
+            <td>
+              <img
+                src="https://images.unsplash.com/photo-1615486363973-f79e3b4bad4b?auto=format&fit=crop&w=300&q=80"
+                alt="Toy train"
+              />
+            </td>
+            <td>
+              <strong>Toy Train</strong><br />
+              A battery-operated train toy with connected compartments. It moves
+              smoothly and provides fun while helping children learn about
+              vehicles and transport.
+            </td>
+            <td class="cost">Rs. 800</td>
+          </tr>
+        </table>
+
+        <div class="footer-note">
+          The table uses the HTML <code>&lt;table&gt;</code> tag with rows and
+          columns to organize toy details clearly.
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

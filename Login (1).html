@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Validation</title>
+</head>
+<body>
+  <h2>Login Page</h2>
+
+  <form onsubmit="return validateLogin()">
+    <label>E-mail:</label><br />
+    <input type="text" id="loginEmail" /><br /><br />
+
+    <label>Password:</label><br />
+    <input type="password" id="loginPassword" /><br /><br />
+
+    <input type="submit" value="Login" />
+  </form>
+
+  <script>
+    function validateLogin() {
+      var email = document.getElementById("loginEmail").value.trim();
+      var password = document.getElementById("loginPassword").value;
+      var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+      if (!emailPattern.test(email)) {
+        alert("Enter a valid email in the format name@domain.com.");
+        return false;
+      }
+
+      if (password.length < 6) {
+        alert("Password should not be less than 6 characters.");
+        return false;
+      }
+
+      alert("Login successful.");
+      return true;
+    }
+  </script>
+</body>
+</html>
