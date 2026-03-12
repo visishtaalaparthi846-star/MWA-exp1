@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .cart-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #0066cc;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .cart-table th,
+        .cart-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .cart-table th {
+            background-color: #0066cc;
+            color: white;
+            font-weight: bold;
+        }
+        .cart-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        .remove-btn {
+            padding: 5px 10px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .remove-btn:hover {
+            background-color: #c82333;
+        }
+        .cart-summary {
+            text-align: right;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #0066cc;
+        }
+        .total-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #28a745;
+            margin: 10px 0;
+        }
+        .checkout-btn {
+            padding: 15px 30px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .checkout-btn:hover {
+            background-color: #218838;
+        }
+        .empty-cart {
+            text-align: center;
+            padding: 50px;
+            color: #6c757d;
+        }
+        .continue-shopping {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .continue-shopping:hover {
+            background-color: #0052a3;
+        }
+    </style>
+</head>
+<body>
+    <div class="cart-container">
+        <h1>Shopping Cart</h1>
+        <div id="cartContent">
+            <!-- Cart items will be loaded here -->
+        </div>
+    </div>
+
+    <script>
+        function loadCart() {
+            const cartContent = document.getElementById('cartContent');
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+
+            if (cart.length === 0) {
+                cartContent.innerHTML = `
+                    <div class="empty-cart">
+                        <h2>Your cart is empty</h2>
+                        <p>Add some books to get started!</p>
+                        <a href="catalogue.html" class="continue-shopping">Continue Shopping</a>
+                    </div>
+                `;
+                return;
+            }
+
+            let total = 0;
+            let tableHTML = `
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Book Title</th>
+                            <th>Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                tableHTML += `
+                    <tr>
+                        <td>${item.title}</td>
+                        <td>$ ${item.price.toFixed(2)}</td>
+                        <td><button class="remove-btn" onclick="removeItem(${index})">Remove</button></td>
+                    </tr>
+                `;
+            });
+
+            tableHTML += `
+                    </tbody>
+                </table>
+                <div class="cart-summary">
+                    <div class="total-price">Total: $ ${total.toFixed(2)}</div>
+                    <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+                    <br>
+                    <a href="catalogue.html" class="continue-shopping">Continue Shopping</a>
+                </div>
+            `;
+
+            cartContent.innerHTML = tableHTML;
+        }
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        function checkout() {
+            alert('Thank you for your order! This is a demo, so no actual purchase will be made.');
+            localStorage.removeItem('cart');
+            loadCart();
+        }
+
+        // Load cart when page loads
+        loadCart();
+    </script>
+</body>
+</html>
+
